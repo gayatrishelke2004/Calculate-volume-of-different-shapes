@@ -1,0 +1,60 @@
+#include<iostream> 
+using namespace std; 
+class Shape {
+  public:
+    virtual double volume() = 0;
+};
+class Cube : public Shape {
+  private:
+    int length; 
+  public:
+    Cube(int l) {
+      length = l;
+    }
+    double volume() {
+      return (length * length * length);
+    }
+};
+class Cylinder : public Shape {
+  private:
+    double radius; 
+    double height; 
+  public:
+    Cylinder(double r, double h) {
+      radius = r;
+      height = h;
+    }
+    double volume() {
+      return (3.14 * radius * radius * height);
+    }
+};
+class Box : public Shape {
+  private:
+    int length; 
+    int breadth; 
+    int height;
+  public:
+    Box(int l, int b, int h) {
+      length = l;
+      breadth = b;
+      height = h;
+    }
+    double volume() {
+      return (length * breadth * height);
+    }
+};
+
+int main() 
+{ 
+  Shape *ptr;
+  Cube c(9);
+  Cylinder cy(10.2, 5.5);
+  Box b(9, 4, 6);
+  ptr = &c;
+  cout << "Volume of Cube :" << ptr->volume() << endl;
+  ptr = &cy;
+  cout << "Volume of Cylinder :" << ptr->volume() << endl;
+  ptr = &b;
+  cout << "Volume of Box :" << ptr->volume() << endl;
+  return 0;
+}
