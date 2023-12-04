@@ -1,0 +1,52 @@
+#include<iostream> 
+using namespace std; 
+class Shape {
+  
+  protected:
+    int l, b, h;
+    double r, h1; 
+ 
+  public:
+   
+    virtual double volume() = 0; 
+};
+
+class Box : public Shape {
+ 
+  public:
+   
+    Box(int l, int b, int h) {
+      this->l = l;
+      this->b = b;
+      this->h = h;
+    }
+   
+    double volume() {
+      return (l * b * h);
+    }
+};
+
+class Cylinder : public Shape {
+  
+  public:
+
+    Cylinder(double r, double h1) {
+      this->r = r;
+      this->h1 = h1;
+    }
+    double volume() {
+      return (3.14 * r * r * h1);
+    }
+};
+
+int main() {
+  Shape *box, *cylinder;
+  box = new Box(9, 4, 6); 
+  cylinder = new Cylinder(10.2, 5.5); 
+  cout << "Volume of Box :" << box->volume() << endl; 
+  cout << "Volume of Cylinder :" << cylinder->volume() << endl; 
+  
+  delete box;
+  delete cylinder;
+  return 0;
+}
