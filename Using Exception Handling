@@ -1,0 +1,78 @@
+#include<iostream> 
+using namespace std; 
+
+class NegativeDimensionException : public exception {
+ 
+  public:
+   int h;
+    const char* what() const throw() {
+      return "Negative dimension is not allowed";
+    }
+};
+
+
+int volume(int l) {
+ 
+  if (l < 0) {
+  
+    throw NegativeDimensionException();
+  } 
+  return (l * l * l);
+}
+
+
+double volume(double r, double h1) {
+
+  if (r < 0 || h1 < 0) {
+  
+    throw NegativeDimensionException();
+  }
+ 
+  return (3.14 * r * r * h1);
+}
+
+
+long volume(int l, int b, int h) {
+  
+  if (l < 0 || b < 0 || h < 0) {
+    
+    throw NegativeDimensionException();
+  }
+  
+  return (l * b * h);
+}
+
+int main() {
+ 
+  int l, b, h;
+  double r, h1;
+
+  try {
+  
+    cout << "Enter the length of a cube: ";
+    cin >> l;
+   
+    cout << "Volume of Cube :" << volume(l) << endl;
+  
+    cout << "Enter the radius and height of a cylinder: ";
+    cin >> r >> h1;
+   
+    cout << "Volume of Cylinder :" << volume(r, h1) << endl;
+ 
+    cout << "Enter the length, breadth and height of a box: ";
+    cin >> l >> b >> h;
+ 
+    cout << "Volume of Box :" << volume(l, b, h) << endl;
+  }
+ 
+  catch (NegativeDimensionException& e) {
+  
+    cout << "Error: " << e.what() << endl;
+  }
+ 
+  catch (...) {
+
+    cout << "Error: Something went wrong" << endl;
+  }
+  return 0;
+}
